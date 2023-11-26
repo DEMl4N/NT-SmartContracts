@@ -14,5 +14,8 @@
     "dotenv": "^16.3.1",
     "hardhat": "^2.19.1",
     "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "@quant-finance/solidity-datetime": "^2.2.0"
   }
 }
