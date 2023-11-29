@@ -7,7 +7,7 @@ const config: HardhatUserConfig = {
   networks: {
     sepolia: {
       url: process.env.RPC_SEPOLIA,
-      accounts: [process.env.PRIVATE_KEY]
+      accounts: [process.env.PRIVATE_KEY as string]
     }
   },
 

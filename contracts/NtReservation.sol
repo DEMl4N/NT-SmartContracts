@@ -17,7 +17,7 @@ contract NtReservation {
     }
 
     // 스터디룸 예약
-    function reserveRoom(uint8 year, uint8 month, uint8 day, uint8 hour, uint8 period, address reserver) public returns (bool) {
+    function reserveRoom(uint16 year, uint8 month, uint8 day, uint8 hour, uint8 period, address reserver) public returns (bool) {
         // 예약 확인 작업
         require(period <= 4, "Cannot reserve the room for over 4 hours");
 
@@ -45,6 +45,7 @@ contract NtReservation {
     }
 
     function minutesAndSeconds(uint timestamp) public pure returns (uint truncatedTimestamp) {
+        timestamp += 9 hours;
         uint256 minute = (timestamp / 60) % 60;
         uint256 second = timestamp % 60;
 
