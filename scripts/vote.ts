@@ -4,12 +4,12 @@ import { ethers } from "hardhat";
 const fsPromises = fs.promises;
 
 // The path to the contract ABI
-const ABI_FILE_PATH = 'artifacts/contracts/NtReservation.sol/NtReservation.json';
+const ABI_FILE_PATH = 'artifacts/contracts/NtZkVote.sol/NtZkVote.json';
 // The address from the deployed smart contract
-const DEPLOYED_CONTRACT_ADDRESS = '0xd5E9AE102A3dD23f7723D93E75dd03D59d5C28Dc';
+const DEPLOYED_CONTRACT_ADDRESS = '0x9E1430cEA7D1E8f0986a5F067085F8eede80EB40';
 
 // load ABI from build artifacts
-async function getAbi(){
+const getAbi = async () => {
   const data = await fsPromises.readFile(ABI_FILE_PATH, 'utf8');
   const abi = JSON.parse(data)['abi'];
   //console.log(abi);
@@ -33,12 +33,25 @@ async function main() {
     let signer = new ethers.Wallet(PRIVATE_KEY, provider);
     const new_contract = new ethers.Contract(DEPLOYED_CONTRACT_ADDRESS, abi, signer);
 
-    let tx = await new_contract.reserveRoom(2023, 11, 28, 21, 4, "0xC09736e7f1DcB6e430905b131Fe3A80845290C57");
-    await tx.wait();
+    let tx1 = await new_contract.setBeginning(2023, 11, 30, 14);
+    await tx1.wait();
+    console.log(tx1);
 
-    // let tx = await new_contract.openRoom("0xC09736e7f1DcB6e430905b131Fe3A80845290C57");
-    // await tx.wait();
-    return console.log(tx);
+    let tx2 = await new_contract.setDeadline(2023, 12, 30, 14);
+    await tx2.wait();
+    console.log(tx2);
+
+    let rc1 = await new_contract.registerCandidate("Naka Chano", "Greatest of all time");
+    await rc1.wait();
+    console.log(rc1);
+
+    let rc2 = await new_contract.registerCandidate("DGood", "Going glamping");
+    await rc2.wait();
+    console.log(rc2);
+
+    let rc3 = await new_contract.registerCandidate("ysowan", "Hakim Ziyech");
+    await rc3.wait();
+    console.log(rc3);
 }
 
 main()

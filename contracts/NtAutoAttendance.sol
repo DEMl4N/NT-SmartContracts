@@ -2,6 +2,14 @@
 pragma solidity ^0.8.19;
 
 contract NtAutoAttendance {
+    struct Semester {
+        uint16 year;
+        uint8 season;   // 0 spring, 1 autumn
+    }
+
+    string public lecture;
+    string public code;
+    Semester semester;
     address public instructor; // 강사 주소
     mapping(address => bool) public attendanceRecords; // 출석 기록 매핑
 
