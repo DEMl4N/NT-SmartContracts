@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@quant-finance/solidity-datetime": "^2.2.0",
-    "@types/circomlibjs": "^0.1.6"
+    "@types/circomlibjs": "^0.1.6",
+    "ethers": "^6.9.0"
   }
 }

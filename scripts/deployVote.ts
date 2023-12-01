@@ -1,5 +1,4 @@
 import { ethers } from "hardhat";
-import fs from 'fs';
 import { mimcSpongecontract } from "circomlibjs";
 import "dotenv/config"
 

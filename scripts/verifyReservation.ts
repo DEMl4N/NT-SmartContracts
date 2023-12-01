@@ -2,8 +2,8 @@ import { run } from "hardhat";
 
 async function main() {
     await run("verify:verify", {
-        address: "0xd5E9AE102A3dD23f7723D93E75dd03D59d5C28Dc",
-        constructorArguments: ["StartupLounge1"]
+        address: "0x6983ACCAF7D0dC8e3d0856acA8395fc96Bf976A4",
+        constructorArguments: ["StartupLounge3"]
       })
       .then(() => {
         console.log(`Well done`);

@@ -2,7 +2,7 @@ import { ethers } from "hardhat";
 import { run } from "hardhat";
 
 async function main() {
-  const roomCode: string = "StartupLounge1";
+  const roomCode: string = "StartupLounge3";
 
   const ntReservation = await ethers.deployContract("NtReservation", [roomCode]);
 
@@ -12,10 +12,10 @@ async function main() {
     `deployed to ${ntReservation.target}`
   );
 
-  setTimeout(() => {
+  await setTimeout(() => {
     
-  }, 10000);
-  
+  }, 20000);
+
   await run("verify:verify", {
     address: ntReservation.target,
     constructorArguments: [roomCode]

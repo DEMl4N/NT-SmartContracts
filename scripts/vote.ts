@@ -1,6 +1,7 @@
 import "dotenv/config";
 import fs from "fs";
 import { ethers } from "hardhat";
+import { generateCommitment, calculateMerkleRootAndZKProof } from "zk-merkle-tree";
 const fsPromises = fs.promises;
 
 // The path to the contract ABI
@@ -32,6 +33,7 @@ async function main() {
     const PRIVATE_KEY = process.env.PRIVATE_KEY as string;
     let signer = new ethers.Wallet(PRIVATE_KEY, provider);
     const new_contract = new ethers.Contract(DEPLOYED_CONTRACT_ADDRESS, abi, signer);
+    const commitment = await generateCommitment();
 
     let tx1 = await new_contract.setBeginning(2023, 11, 30, 14);
     await tx1.wait();
