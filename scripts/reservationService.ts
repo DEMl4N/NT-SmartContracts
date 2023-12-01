@@ -1,4 +1,4 @@
-import "dotenv/config";
+import { EventLog } from "ethers";
 import fs from "fs";
 import { ethers } from "hardhat";
 
@@ -14,6 +14,8 @@ const getAbi = async () => {
   //console.log(abi);
   return abi;
 }
+
+
 
 const reserve = async (
     contractID: string, 
@@ -43,7 +45,7 @@ const getName = async (contractID: string) => {
     let signer = await provider.getSigner();
     const reservationContract = new ethers.Contract(contractID, abi, signer);
 
-    const name = await reservationContract.code();
+    const name: string = await reservationContract.code();
     return name;
 }
 
@@ -65,6 +67,6 @@ const checkReservation = async (contractID: string) => {
     const reservations = await reservationContract.queryFilter(filter, startBlock);
 
     return reservations.map((r) => {
-        return r.data[1];
+        return r.topics[1]
     });
 }

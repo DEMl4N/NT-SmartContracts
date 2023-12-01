@@ -1,4 +1,3 @@
-import "dotenv/config";
 import fs from "fs";
 import { ethers } from "hardhat";
 import { generateCommitment, calculateMerkleRootAndZKProof } from "zk-merkle-tree";

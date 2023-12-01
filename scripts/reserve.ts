@@ -6,7 +6,7 @@ const fsPromises = fs.promises;
 // The path to the contract ABI
 const ABI_FILE_PATH = 'artifacts/contracts/NtReservation.sol/NtReservation.json';
 // The address from the deployed smart contract
-const DEPLOYED_CONTRACT_ADDRESS = '0xd5E9AE102A3dD23f7723D93E75dd03D59d5C28Dc';
+const DEPLOYED_CONTRACT_ADDRESS = '0xaFe59e93DA9967089995656f8756f96F19734fe5';
 
 // load ABI from build artifacts
 async function getAbi() {
@@ -33,10 +33,10 @@ async function main() {
     let signer = new ethers.Wallet(PRIVATE_KEY, provider);
     const new_contract = new ethers.Contract(DEPLOYED_CONTRACT_ADDRESS, abi, signer);
 
-    // let tx = await new_contract.reserveRoom(2023, 11, 28, 21, 4, "0xC09736e7f1DcB6e430905b131Fe3A80845290C57");
-    // await tx.wait();
+    let tx = await new_contract.reserveRoom(2023, 12, 1, 20, 2, "0xC09736e7f1DcB6e430905b131Fe3A80845290C57");
+    await tx.wait();
 
-    let tx = await new_contract.code();
+    // let tx = await new_contract.code();
     // await tx.wait();
     return console.log(tx);
 }
